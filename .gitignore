@@ -1,0 +1,18 @@
+node_modules/
+.next/
+.env*
+!.env.example
+.data/
+*.tsbuildinfo
+
+playwright-report/
+test-results/
+.vercel
+.vercel
+
+# Copied from the installed Excalidraw package by postinstall
+/public/excalidraw/fonts/
+
+# Build artifacts and local tooling
+hosted/
+.e2e-tmp.mjs
