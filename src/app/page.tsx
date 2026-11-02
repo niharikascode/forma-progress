@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -9,6 +10,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Brand } from "@/components/brand";
+import { ScreenTour } from "@/components/screen-tour";
 import { currentAccount } from "@/lib/auth";
 import "./site.css";
 
@@ -98,58 +100,39 @@ export default async function Home() {
             )}
           </div>
 
-          <div className="preview" aria-hidden>
-            <div className="preview-bar">
-              <span />
-              <span />
-              <span />
-            </div>
-            <div className="preview-body">
-              <div className="preview-head">
-                <div>
-                  <small>TODAY</small>
-                  <strong>A little further along</strong>
-                </div>
-                <div className="preview-meter">
-                  <span>7 of 12 steps</span>
-                  <div className="bar">
-                    <i style={{ width: "58%" }} />
-                  </div>
-                </div>
+          <div className="hero-shot">
+            <div className="frame">
+              <div className="frame-bar" aria-hidden>
+                <span />
+                <span />
+                <span />
+                <em>forma-progress.vercel.app</em>
               </div>
-              {[
-                [
-                  "Implement project and task management",
-                  "Build My Progress App",
-                  75,
-                  "green",
-                ],
-                [
-                  "Synthesize customer interview notes",
-                  "Product discovery",
-                  50,
-                  "orange",
-                ],
-                [
-                  "Outline the portfolio case study",
-                  "Personal website",
-                  33,
-                  "blue",
-                ],
-              ].map(([title, project, pct, color]) => (
-                <div className="preview-task" key={title as string}>
-                  <span className={`dot ${color}`} />
-                  <div>
-                    <strong>{title}</strong>
-                    <small>{project}</small>
-                  </div>
-                  <div className="bar small">
-                    <i style={{ width: `${pct}%` }} />
-                  </div>
-                </div>
-              ))}
+              <Image
+                src="/screens/today.webp"
+                alt="The Forma Today view: planned tasks with subtask progress and a daily summary"
+                width={2400}
+                height={1500}
+                sizes="(max-width: 1120px) 100vw, 1000px"
+                priority
+              />
+            </div>
+            <div className="phone">
+              <Image
+                src="/screens/mobile-today.webp"
+                alt="Forma on a phone"
+                width={780}
+                height={1688}
+                sizes="200px"
+              />
             </div>
           </div>
+        </section>
+
+        <section className="screens" aria-labelledby="screens-title">
+          <p className="eyebrow">A look inside</p>
+          <h2 id="screens-title">Real screens from the app</h2>
+          <ScreenTour />
         </section>
 
         <section className="features" aria-labelledby="features-title">

@@ -99,27 +99,33 @@ export async function readWorkspace(
       }[]
     ).map((row) => ({ ...row, subtasks: JSON.parse(row.subtasks) })),
     subtasks: await byTask("task_subtasks", " ORDER BY rowid"),
-    notepads: await byTask("task_notepads"),
-    projects: await db.all("SELECT * FROM projects WHERE userId=?", userId),
+    notepads: await byTask("task_notepads", " ORDER BY rowid"),
+    projects: await db.all(
+      "SELECT * FROM projects WHERE userId=? ORDER BY rowid",
+      userId,
+    ),
     milestones: await db.all(
-      `SELECT * FROM milestones WHERE projectId IN (${USER_PROJECTS})`,
+      `SELECT * FROM milestones WHERE projectId IN (${USER_PROJECTS}) ORDER BY rowid`,
       userId,
     ),
     tasks: await db.all(
-      `SELECT * FROM tasks WHERE projectId IN (${USER_PROJECTS})`,
+      `SELECT * FROM tasks WHERE projectId IN (${USER_PROJECTS}) ORDER BY rowid`,
       userId,
     ),
     outputs: await byTask("task_outputs", " ORDER BY createdAt DESC"),
-    plans: await db.all("SELECT * FROM daily_plans WHERE userId=?", userId),
+    plans: await db.all(
+      "SELECT * FROM daily_plans WHERE userId=? ORDER BY rowid",
+      userId,
+    ),
     planItems: await db.all(
-      `SELECT * FROM daily_plan_items WHERE planId IN (${USER_PLANS})`,
+      `SELECT * FROM daily_plan_items WHERE planId IN (${USER_PLANS}) ORDER BY rowid`,
       userId,
     ),
     reviews: await db.all(
       "SELECT * FROM daily_reviews WHERE userId=? ORDER BY date DESC",
       userId,
     ),
-    dependencies: await byTask("task_dependencies"),
+    dependencies: await byTask("task_dependencies", " ORDER BY rowid"),
   } as Workspace;
 }
 async function taskFor(db: Db, id: string, userId: string) {
