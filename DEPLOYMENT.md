@@ -30,3 +30,12 @@ Deployment `dpl_G9s5TJ5xBJgCVLHM2Vesp4a8mepq` is READY with `forma-progress.verc
 ## Daily subtask summary — 2026-10-30
 
 Deployment `dpl_6fiEx4w5cWTg7yjJejHx4PMGzLNw` is READY with `forma-progress.vercel.app` assigned. “A little further along” now includes the planned tasks’ subtask completion count, percentage, and progress bar. Past dates use recorded checklist snapshots. Production build and targeted lint passed.
+
+## Accounts and public landing page — 2026-11-03
+
+- Source: GitHub `niharikascode/forma-progress` (public), commit `b6a020d`.
+- Production deployment `dpl_GcEDFNSf2nQNBdcykQN2hD7KpWwf` is READY, with `forma-progress.vercel.app` assigned.
+- The site is public. `/` is the landing page and `/signup` and `/login` handle accounts. Each account's workspace at `/app` is private, and `/api/workspace` returns 401 without a session.
+- The original single-user workspace was claimed through the sign-up page (verified: the claim option no longer appears).
+- `APP_PASSWORD`, `APP_USERNAME` and `LOCAL_MODE` are no longer used for access, and `APP_PASSWORD` can't claim anything again. They can be deleted in the Vercel dashboard.
+- Vercel Authentication still protects preview URLs only (`all_except_custom_domains`).
